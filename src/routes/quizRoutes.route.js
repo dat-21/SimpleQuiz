@@ -13,13 +13,20 @@ const quizController = require("../controllers/quizController.controller");
  */
 router.get("/getAllQuiz", quizController.getAllQuizzes);
 router.post("/create", quizController.createQuiz);
-router.get("/:quizId", quizController.getQuizById);
-router.put("/update/:quizId", quizController.updateQuiz);
-router.delete("/delete/:quizId", quizController.deleteQuiz);
 
-// Advanced
+// Advanced - Must be before /:quizId to avoid route conflicts
+// Assignment Requirement #3: Filter questions by keyword "capital"
 router.get("/:quizId/populate", quizController.getQuizWithCapitalQuestions);
 router.post("/:quizId/question", quizController.addQuestionToQuiz);
 router.post("/:quizId/questions", quizController.addManyQuestionsToQuiz);
+router.delete(
+  "/:quizId/question/:questionId",
+  quizController.removeQuestionFromQuiz,
+);
+
+// Basic CRUD - Must be after specific routes
+router.get("/:quizId", quizController.getQuizById);
+router.put("/update/:quizId", quizController.updateQuiz);
+router.delete("/delete/:quizId", quizController.deleteQuiz);
 
 module.exports = router;

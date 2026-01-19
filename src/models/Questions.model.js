@@ -15,15 +15,15 @@ const questionShema = new mongoose.Schema(
         },
         message: "A question must have at least 2 options",
       },
-      keywords: {
-        type: [String],
-        default: [],
-      },
-      correctAnswerIndex: {
-        type: Number,
-        required: true,
-        min: 0,
-      },
+    },
+    keywords: {
+      type: [String],
+      default: [],
+    },
+    correctAnswerIndex: {
+      type: Number,
+      required: true,
+      min: 0,
     },
   },
   {
